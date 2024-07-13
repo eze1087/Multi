@@ -3,7 +3,7 @@
 clear && clear
 colores="$(pwd)/colores"
 rm -rf ${colores}
-wget -O ${colores} "https://raw.githubusercontent.com/NetVPS/Multi-Script/main/Otros/colores" &>/dev/null
+wget -O ${colores} "https://raw.githubusercontent.com/eze1087/Multi/main/Otros/colores" &>/dev/null
 [[ ! -e ${colores} ]] && exit
 chmod +x ${colores} &>/dev/null
 source ${colores}
@@ -30,7 +30,7 @@ os_system() {
   esac
 }
 repo() {
-  link="https://raw.githubusercontent.com/NetVPS/Multi-Script/main/Source-List/$1.list"
+  link="https://raw.githubusercontent.com/eze1087/Multi/main/Source-List/$1.list"
   case $1 in
   8 | 9 | 10 | 11 | 16.04 | 18.04 | 20.04 | 20.10 | 21.04 | 21.10 | 22.04) wget -O /etc/apt/sources.list ${link} &>/dev/null ;;
   esac
@@ -67,7 +67,7 @@ install_inicial() {
   }
   #CONFIGURAR SSH-ROOT PRINCIPAL AMAZON, GOOGLE
   pass_root() {
-    wget -O /etc/ssh/sshd_config https://raw.githubusercontent.com/NetVPS/Multi-Script/main/Otros/sshd_config >/dev/null 2>&1
+    wget -O /etc/ssh/sshd_config https://raw.githubusercontent.com/eze1087/Multi/main/Otros/sshd_config >/dev/null 2>&1
     chmod +rwx /etc/ssh/sshd_config
     service ssh restart
     msgi -bar
@@ -83,7 +83,7 @@ install_inicial() {
 
   }
   #-- VERIFICAR VERSION
-  v1=$(curl -sSL "https://raw.githubusercontent.com/NetVPS/Multi-Script/main/Vercion")
+  v1=$(curl -sSL "https://raw.githubusercontent.com/eze1087/Multi/main/Vercion")
   echo "$v1" >/etc/version_instalacion
   v22=$(cat /etc/version_instalacion)
   vesaoSCT="\e[1;31m [ \e[1;32m( $v22 )\e[1;97m\e[1;31m ]"
@@ -134,8 +134,7 @@ password required pam_permit.so' >/etc/pam.d/common-password && chmod +x /etc/pa
   read -t 120 -n 1 -rsp $'\e[1;97m           Preciona Enter Para continuar\n'
   clear && clear
   apt update
-  apt upgrade -y
-  wget -O /usr/bin/install https://raw.githubusercontent.com/NetVPS/Multi-Script/main/0-Instalador/install.sh &>/dev/null
+  wget -O /usr/bin/install https://raw.githubusercontent.com/eze1087/Multi/main/0-Instalador/install.sh &>/dev/null
   chmod +rwx /usr/bin/install
 }
 
@@ -219,7 +218,7 @@ install_vps_mx_85_oficial() {
   clear && clear
   mkdir /etc/VPS-MX >/dev/null 2>&1
   cd /etc
-  wget https://raw.githubusercontent.com/NetVPS/Multi-Script/main/VPS-MX-8.5-Final%20Oficial/VPS-MX.tar.xz >/dev/null 2>&1
+  wget https://raw.githubusercontent.com/eze1087/Multi/main/VPS-MX-8.5-Final%20Oficial/VPS-MX.tar.xz >/dev/null 2>&1
   tar -xf VPS-MX.tar.xz >/dev/null 2>&1
   chmod +x VPS-MX.tar.xz >/dev/null 2>&1
   rm -rf VPS-MX.tar.xz
@@ -248,15 +247,15 @@ install_vps_mx_85_oficial() {
   [[ ! -d /etc/VPS-MX/Slow/install ]] && mkdir /etc/VPS-MX/Slow/install
   [[ ! -d /etc/VPS-MX/Slow/Key ]] && mkdir /etc/VPS-MX/Slow/Key
   touch /usr/share/lognull &>/dev/null
-  wget -O /bin/resetsshdrop https://raw.githubusercontent.com/NetVPS/Multi-Script/main/VPS-MX-8.5-Final%20Oficial/Otros/resetsshdrop &>/dev/null
+  wget -O /bin/resetsshdrop https://raw.githubusercontent.com/eze1087/Multi/main/VPS-MX-8.5-Final%20Oficial/Otros/resetsshdrop &>/dev/null
   chmod +x /bin/resetsshdrop
   grep -v "^PasswordAuthentication" /etc/ssh/sshd_config >/tmp/passlogin && mv /tmp/passlogin /etc/ssh/sshd_config
   echo "PasswordAuthentication yes" -e "\e[1;92m             >> INSTALACION COMPLETADA <<" >>/etc/ssh/sshd_configecho && msgi -bar2
   rm -rf /usr/local/lib/systemubu1 &>/dev/null
   rm -rf /etc/versin_script &>/dev/null
-  v1=$(curl -sSL "https://raw.githubusercontent.com/NetVPS/Multi-Script/main/VPS-MX-8.5-Final%20Oficial/Otros/Version")
+  v1=$(curl -sSL "https://raw.githubusercontent.com/eze1087/Multi/main/VPS-MX-8.5-Final%20Oficial/Otros/Version")
   echo "$v1" >/etc/versin_script
-  wget -O /etc/versin_script_new https://raw.githubusercontent.com/NetVPS/Multi-Script/main/VPS-MX-8.5-Final%20Oficial/Otros/Version &>/dev/null
+  wget -O /etc/versin_script_new https://raw.githubusercontent.com/eze1087/Multi/main/VPS-MX-8.5-Final%20Oficial/Otros/Version &>/dev/null
   echo '#!/bin/sh -e' >/etc/rc.local
   sudo chmod +x /etc/rc.local
   echo "sudo resetsshdrop" >>/etc/rc.local
@@ -269,7 +268,7 @@ install_vps_mx_85_oficial() {
   echo 'echo -e "\t\033[91m  \ \ / /| |_) \___ \ _____| |\/| |\  /  " ' >>.bashrc
   echo 'echo -e "\t\033[91m   \ V / |  __/ ___) |_____| |  | |/  \  " ' >>.bashrc
   echo 'echo -e "\t\033[91m    \_/  |_|   |____/      |_|  |_/_/\_\ " ' >>.bashrc
-  echo 'wget -O /etc/versin_script_new https://raw.githubusercontent.com/NetVPS/Multi-Script/main/VPS-MX-8.5-Final%20Oficial/Otros/Version &>/dev/null' >>.bashrc
+  echo 'wget -O /etc/versin_script_new https://raw.githubusercontent.com/eze1087/Multi/main/VPS-MX-8.5-Final%20Oficial/Otros/Version &>/dev/null' >>.bashrc
   echo 'echo "" ' >>.bashrc
   echo 'mess1="$(less /etc/VPS-MX/message.txt)" ' >>.bashrc
   echo 'echo "" ' >>.bashrc
@@ -301,7 +300,7 @@ install_LACASITA_90() {
   clear && clear
   mkdir /etc/VPS-MX >/dev/null 2>&1
   cd /etc
-  wget https://raw.githubusercontent.com/NetVPS/Multi-Script/main/LACASITAMX-v9x/VPS-MX.tar.gz >/dev/null 2>&1
+  wget https://raw.githubusercontent.com/eze1087/Multi/main/LACASITAMX-v9x/VPS-MX.tar.gz >/dev/null 2>&1
   tar -xf VPS-MX.tar.gz >/dev/null 2>&1
   chmod +x VPS-MX.tar.gz >/dev/null 2>&1
   rm -rf VPS-MX.tar.gz
@@ -330,7 +329,7 @@ install_LACASITA_90() {
   [[ ! -d /usr/local/libreria ]] && mkdir /usr/local/libreria
   [[ ! -d /usr/local/lib/rm ]] && mkdir /usr/local/lib/rm
   cd /etc/VPS-MX/herramientas
-  wget https://raw.githubusercontent.com/NetVPS/Multi-Script/main/LACASITAMX-v9x/VPS-MX.tar.gz >/dev/null 2>&1
+  wget https://raw.githubusercontent.com/eze1087/Multi/main/LACASITAMX-v9x/VPS-MX.tar.gz >/dev/null 2>&1
   tar -xf speedtest_v1.tar >/dev/null 2>&1
   rm -rf speedtest_v1.tar >/dev/null 2>&1
   cd
@@ -339,21 +338,21 @@ install_LACASITA_90() {
   [[ ! -d /etc/VPS-MX/Slow/install ]] && mkdir /etc/VPS-MX/Slow/install
   [[ ! -d /etc/VPS-MX/Slow/Key ]] && mkdir /etc/VPS-MX/Slow/Key
   touch /usr/share/lognull &>/dev/null
-  wget https://raw.githubusercontent.com/NetVPS/Multi-Script/main/LACASITAMX-v9x/Otros/SPR -O /usr/bin/SPR &>/dev/null &>/dev/null
+  wget https://raw.githubusercontent.com/eze1087/Multi/main/LACASITAMX-v9x/Otros/SPR -O /usr/bin/SPR &>/dev/null &>/dev/null
   chmod 775 /usr/bin/SPR &>/dev/null
-  wget -O /bin/rebootnb https://raw.githubusercontent.com/NetVPS/Multi-Script/main/LACASITAMX-v9x/Otros/rebootnb &>/dev/null
+  wget -O /bin/rebootnb https://raw.githubusercontent.com/eze1087/Multi/main/LACASITAMX-v9x/Otros/rebootnb &>/dev/null
   chmod +x /bin/rebootnb
-  wget -O /bin/resetsshdrop https://raw.githubusercontent.com/NetVPS/Multi-Script/main/LACASITAMX-v9x/Otros/resetsshdrop &>/dev/null
+  wget -O /bin/resetsshdrop https://raw.githubusercontent.com/eze1087/Multi/main/LACASITAMX-v9x/Otros/resetsshdrop &>/dev/null
   chmod +x /bin/resetsshdrop
   wget -O /etc/versin_script_new https://raw.githubusercontent.com/NetVPS/Multi-Script/main/LACASITAMX-v9x/Otros/Version &>/dev/null
-  wget -O /etc/ssh/sshd_config https://raw.githubusercontent.com/NetVPS/Multi-Script/main/LACASITAMX-v9x/Otros/sshd &>/dev/null
+  wget -O /etc/ssh/sshd_config https://raw.githubusercontent.com/eze1087/Multi/main/LACASITAMX-v9x/Otros/sshd &>/dev/null
   chmod 777 /etc/ssh/sshd_config
-  wget -O /usr/bin/trans https://raw.githubusercontent.com/NetVPS/Multi-Script/main/LACASITAMX-v9x/Otros/trans &>/dev/null
-  wget -O /bin/Desbloqueo.sh https://raw.githubusercontent.com/NetVPS/Multi-Script/main/LACASITAMX-v9x/Otros/desbloqueo.sh &>/dev/null
+  wget -O /usr/bin/trans https://raw.githubusercontent.com/eze1087/Multi/main/LACASITAMX-v9x/Otros/trans &>/dev/null
+  wget -O /bin/Desbloqueo.sh https://raw.githubusercontent.com/eze1087/Multi/main/LACASITAMX-v9x/Otros/desbloqueo.sh &>/dev/null
   chmod +x /bin/Desbloqueo.sh
-  wget -O /bin/monitor.sh https://raw.githubusercontent.com/NetVPS/Multi-Script/main/LACASITAMX-v9x/Otros/monitor.sh &>/dev/null
+  wget -O /bin/monitor.sh https://raw.githubusercontent.com/eze1087/Multi/main/LACASITAMX-v9x/Otros/monitor.sh &>/dev/null
   chmod +x /bin/monitor.sh
-  wget -O /var/www/html/estilos.css https://raw.githubusercontent.com/NetVPS/Multi-Script/main/LACASITAMX-v9x/Otros/estilos.css &>/dev/null
+  wget -O /var/www/html/estilos.css https://raw.githubusercontent.com/eze1087/Multi/main/LACASITAMX-v9x/Otros/estilos.css &>/dev/null
   [[ -f "/usr/sbin/ufw" ]] && ufw allow 443/tcp &>/dev/null
   ufw allow 80/tcp &>/dev/null
   ufw allow 3128/tcp &>/dev/null
@@ -364,9 +363,9 @@ install_LACASITA_90() {
   echo "PasswordAuthentication yes" >>/etc/ssh/sshd_config
   rm -rf /usr/local/lib/systemubu1 &>/dev/null
   rm -rf /etc/versin_script &>/dev/null
-  v1=$(curl -sSL "https://raw.githubusercontent.com/NetVPS/Multi-Script/main/LACASITAMX-v9x/Otros/Version")
+  v1=$(curl -sSL "https://raw.githubusercontent.com/eze1087/Multi/main/LACASITAMX-v9x/Otros/Version")
   echo "$v1" >/etc/versin_script
-  wget -O /etc/versin_script_new https://raw.githubusercontent.com/NetVPS/Multi-Script/main/LACASITAMX-v9x/Otros/Version &>/dev/null
+  wget -O /etc/versin_script_new https://raw.githubusercontent.com/eze1087/Multi/main/LACASITAMX-v9x/Otros/Version &>/dev/null
   echo '#!/bin/sh -e' >/etc/rc.local
   sudo chmod +x /etc/rc.local
   echo "sudo rebootnb" >>/etc/rc.local
@@ -745,7 +744,7 @@ install_latam() {
       updatedb
       if [[ -e $HOME/lista-arq ]] && [[ ! $(cat /etc/SCRIPT-LATAM/errorkey | grep "Codificacion Incorrecta") ]]; then
         msgi -bar2
-        msgi -verd " Ficheros Copiados \e[97m[\e[93m Key By @Panel_NetVPS_bot \e[97m]"
+        msgi -verd " Ficheros Copiados \e[97m[\e[93m Key By El NeNe @Sando \e[97m]"
         REQUEST=$(ofus "$Key" | cut -d'/' -f2)
         [[ ! -d ${SCPinstal} ]] && mkdir ${SCPinstal}
         pontos="."
@@ -786,7 +785,7 @@ msgi -bar2
 echo -e " \e[5m\e[1;100m   =====>> ►►  MENU DE INSTALACION  ◄◄ <<=====   \e[1;37m"
 msgi -bar2
 #-- VERIFICAR VERSION
-v1=$(curl -sSL "https://raw.githubusercontent.com/NetVPS/Multi-Script/main/Vercion")
+v1=$(curl -sSL "https://raw.githubusercontent.com/eze1087/Multi/main/Vercion")
 echo "$v1" >/etc/version_instalacion
 v22=$(cat /etc/version_instalacion)
 vesaoSCT="\e[1;31m [ \e[1;32m( $v22 )\e[1;97m\e[1;31m ]"
